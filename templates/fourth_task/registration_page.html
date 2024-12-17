@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration_page</title>
+</head>
+<body>
+<form method="post">
+    <h1>Регистрация</h1>
+    {% csrf_token %}
+    <label for='username'>Введите логин:</label>
+    <input type="text" id="username" name="username" maxlength="30" required>
+
+    <label for='password'>Введите пароль:</label>
+    <input type="text" id="password" name="password" minlength="8" required>
+
+    <label for='repeat_password'>Повторите пароль:</label>
+    <input type="text" id="repeat_password" name="repeat_password" minlength="8" required>
+
+    <label for='age'>Введите свой возраст:</label>
+    <input type="int" id="age" name="age" maxlength="3" required>
+
+    <button type='submit'>Отправить</button>
+    {% for error in info.values %}
+    <h3>{{ error }}</h3>
+    {% endfor %}
+
+</form>
+</body>
+</html>

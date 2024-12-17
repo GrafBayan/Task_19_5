@@ -1,0 +1,34 @@
+{% extends 'fourth_task/menu.html' %}
+
+{% block pagename %}Магазин настолок{% endblock %}
+{% block page_title %}Магазин настолок{% endblock %}
+
+{% block content %}
+<h2>Доступные настолки</h2>
+<ul>
+    {% for game in games %}
+        <li>
+            <strong>{{ game.title }}</strong> | {{ game.description }}<br>
+            Стоимость: {{ game.cost }}<br>
+            Размер: {{ game.size }} MB<br>
+            Возрастные ограничения: {{ game.age_limited|yesno:"Да,Нет" }}
+            <form method="POST" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="game_name" value="{{ game.title }}">
+                <button type="submit">Купить</button>
+            </form>
+        </li>
+    {% empty %}
+        <li>Нет доступных игр.</li>
+    {% endfor %}
+</ul>
+
+<h3>Корзина</h3>
+<ul>
+    {% for item, quantity in cart_items.items %}
+        <li>{{ item }}: {{ quantity }}</li>
+    {% empty %}
+        <li>Ваша корзина пуста.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

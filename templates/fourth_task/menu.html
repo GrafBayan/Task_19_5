@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block pagename %}Название страницы{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>{% block page_title %}Заголовок страницы{% endblock %}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'main' %}">Главная</a></li>
+                <li><a href="{% url 'shop' %}">Магазин</a></li>
+                <li><a href="{% url 'cart' %}">Корзина</a></li>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2024 Онлайн магазин настолок</p>
+    </footer>
+</body>
+</html>
